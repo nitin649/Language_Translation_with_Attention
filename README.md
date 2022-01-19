@@ -36,8 +36,6 @@ To put it in simple terms, all the vectors h1,h2,h3…., hTx are representations
 
 But Bahdanau et al put emphasis on embeddings of all the words in the input (represented by hidden states) while creating the context vector. They did this by simply taking a weighted sum of the hidden states.
 
-Now, the question is how should the weights be calculated? Well, the weights are also learned by a feed-forward neural network and I’ve mentioned their mathematical equation below.
-
 The context vector ci for the output word yi is generated using the weighted sum of the annotations:
 
 <p align="center">
@@ -53,21 +51,18 @@ The context vector ci for the output word yi is generated using the weighted sum
   <img src="https://user-images.githubusercontent.com/55678844/150071656-f63d7e2f-5003-4185-9599-02c0ca1d0d8d.jpg" />
 </p>
 
-attention deep learning
-
-
-
 eij is the output score of a feedforward neural network described by the function a that attempts to capture the alignment between input at j and output at i.
 
-Basically, if the encoder produces Tx number of “annotations” (the hidden state vectors) each having dimension d, then the input dimension of the feedforward network is (Tx , 2d) (assuming the previous state of the decoder also has d dimensions and these two vectors are concatenated). This input is multiplied with a matrix Wa of (2d, 1) dimensions (of course followed by addition of the bias term) to get scores eij (having a dimension (Tx , 1)).
+Basically, if the encoder produces Tx number of “annotations” (the hidden state vectors) each having dimension d, then the input dimension of the feedforward network is 
+(Tx , 2d) (assuming the previous state of the decoder also has d dimensions and these two vectors are concatenated). This input is multiplied with a matrix Wa of (2d, 1) dimensions (of course followed by addition of the bias term) to get scores eij (having a dimension (Tx , 1)).
 
 On the top of these eij scores, a tan hyperbolic function is applied followed by a softmax to get the normalized alignment scores for output j:
 
-E = I [Tx*2d] * Wa [2d * 1] + B[Tx*1]
+      E = I [Tx*2d] * Wa [2d * 1] + B[Tx*1]
 
-α = softmax(tanh(E))
+      α = softmax(tanh(E))
 
-C= IT * α!
+      C= IT * α!
 
 
 So, α is a (Tx, 1) dimensional vector and its elements are the weights corresponding to each word in the input sentence.
