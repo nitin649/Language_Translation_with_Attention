@@ -21,6 +21,9 @@ and producing fluent text in the output language.
       (NLP). Later, this mechanism, or its variants, was used in other applications, including computer vision, speech processing, etc.
       
 ### Understanding the Attention Mechanism
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/55678844/150070973-79d5fd02-4f2b-4b88-bf07-3dddd360deac.jpg" />
+</p>
 
 ![attn_mec](https://user-images.githubusercontent.com/55678844/150070973-79d5fd02-4f2b-4b88-bf07-3dddd360deac.jpg)
 
