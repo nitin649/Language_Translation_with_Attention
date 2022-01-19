@@ -30,7 +30,7 @@ This is the diagram of the Attention model shown in Bahdanau’s paper. The Bidi
 <p align="center">
   <img src="https://user-images.githubusercontent.com/55678844/150071258-bc0298e5-3ff0-4464-bce4-050894e40be2.jpg" />
 </p>
-attention deep learning
+
 
 To put it in simple terms, all the vectors h1,h2,h3…., hTx are representations of Tx number of words in the input sentence. In the simple encoder and decoder model, only the last state of the encoder LSTM was used (hTx in this case) as the context vector.
 
@@ -84,12 +84,12 @@ Encoder-Decoder models were originally built to solve such Seq2Seq problems.
 3. I have used LSTM for this task.
 
 ### The Encoder Block
-   The encoder part is an LSTM cell. It is fed in the input-sequence over time and it tries to encapsulate all its information and store it in its 
-   final internal states hₜ (hidden state) and cₜ (cell state). The internal states are then passed onto the decoder part, which it will use to try 
+   The encoder part is an GRU cell. It is fed in the input-sequence over time and it tries to encapsulate all its information and store it in its 
+   final internal states hₜ (hidden state) . The internal states are then passed onto the decoder part, which it will use to try 
    to produce the target-sequence. This is the ‘context vector’ which we were earlier referring to.The outputs at each time-step of the encoder part 
    are all discarded.
       
 ### The Decoder Block
-   The decoder block is also an LSTM cell. The main thing to note here is that the initial states (h₀, c₀) of the decoder are set to the final states 
-   (hₜ, cₜ) of the encoder.These act as the ‘context’ vector and help the decoder produce the desired target-sequence.Now the way decoder works, is, that 
+   The decoder block is also an GRU cell. The main thing to note here is that the initial states (h₀) of the decoder are set to the final states 
+   (hₜ) of the encoder.These act as the ‘context’ vector and help the decoder produce the desired target-sequence.Now the way decoder works, is, that 
    its output at any time-step t is supposed to be the tᵗʰ word in the target-sequence/Y_true. 
