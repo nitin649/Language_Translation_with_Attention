@@ -19,6 +19,45 @@ and producing fluent text in the output language.
       an attempt to implement the same action of selectively concentrating on a few relevant things, while ignoring others in deep neural networks. 
 2.    The attention mechanism emerged as an improvement over the encoder decoder-based neural machine translation system in natural language processing 
       (NLP). Later, this mechanism, or its variants, was used in other applications, including computer vision, speech processing, etc.
+      
+### Understanding the Attention Mechanism
+
+[attn_mec](https://user-images.githubusercontent.com/55678844/150070973-79d5fd02-4f2b-4b88-bf07-3dddd360deac.jpg)
+
+This is the diagram of the Attention model shown in Bahdanau’s paper. The Bidirectional LSTM used here generates a sequence of annotations (h1, h2,….., hTx) for each input sentence. All the vectors h1,h2.., etc., used in their work are basically the concatenation of forward and backward hidden states in the encoder.
+
+attention deep learning
+
+To put it in simple terms, all the vectors h1,h2,h3…., hTx are representations of Tx number of words in the input sentence. In the simple encoder and decoder model, only the last state of the encoder LSTM was used (hTx in this case) as the context vector.
+
+But Bahdanau et al put emphasis on embeddings of all the words in the input (represented by hidden states) while creating the context vector. They did this by simply taking a weighted sum of the hidden states.
+
+Now, the question is how should the weights be calculated? Well, the weights are also learned by a feed-forward neural network and I’ve mentioned their mathematical equation below.
+
+The context vector ci for the output word yi is generated using the weighted sum of the annotations:
+
+
+
+ The weights αij are computed by a softmax function given by the following equation:
+
+attention deep learning
+
+
+
+eij is the output score of a feedforward neural network described by the function a that attempts to capture the alignment between input at j and output at i.
+
+Basically, if the encoder produces Tx number of “annotations” (the hidden state vectors) each having dimension d, then the input dimension of the feedforward network is (Tx , 2d) (assuming the previous state of the decoder also has d dimensions and these two vectors are concatenated). This input is multiplied with a matrix Wa of (2d, 1) dimensions (of course followed by addition of the bias term) to get scores eij (having a dimension (Tx , 1)).
+
+On the top of these eij scores, a tan hyperbolic function is applied followed by a softmax to get the normalized alignment scores for output j:
+
+E = I [Tx*2d] * Wa [2d * 1] + B[Tx*1]
+
+α = softmax(tanh(E))
+
+C= IT * α!
+
+
+So, α is a (Tx, 1) dimensional vector and its elements are the weights corresponding to each word in the input sentence.
 
 
 ### Sequence to Sequence Modelling
