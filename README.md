@@ -26,6 +26,8 @@ and producing fluent text in the output language.
 
 This is the diagram of the Attention model shown in Bahdanau’s paper. The Bidirectional LSTM used here generates a sequence of annotations (h1, h2,….., hTx) for each input sentence. All the vectors h1,h2.., etc., used in their work are basically the concatenation of forward and backward hidden states in the encoder.
 
+![eq1](https://user-images.githubusercontent.com/55678844/150071258-bc0298e5-3ff0-4464-bce4-050894e40be2.jpg)
+
 attention deep learning
 
 To put it in simple terms, all the vectors h1,h2,h3…., hTx are representations of Tx number of words in the input sentence. In the simple encoder and decoder model, only the last state of the encoder LSTM was used (hTx in this case) as the context vector.
@@ -38,7 +40,14 @@ The context vector ci for the output word yi is generated using the weighted sum
 
 
 
+![eq2](https://user-images.githubusercontent.com/55678844/150071393-2ee9660e-991d-4d88-93a9-d2564a164e21.jpg)
+
+
  The weights αij are computed by a softmax function given by the following equation:
+ 
+ ![eq3](https://user-images.githubusercontent.com/55678844/150071553-49aabd76-7a99-4720-a509-f85ecb4e32e9.jpg)
+
+![eq4](https://user-images.githubusercontent.com/55678844/150071656-f63d7e2f-5003-4185-9599-02c0ca1d0d8d.jpg)
 
 attention deep learning
 
