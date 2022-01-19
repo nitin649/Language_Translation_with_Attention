@@ -22,7 +22,7 @@ and producing fluent text in the output language.
       
 ### Understanding the Attention Mechanism
 
-[attn_mec](https://user-images.githubusercontent.com/55678844/150070973-79d5fd02-4f2b-4b88-bf07-3dddd360deac.jpg)
+![attn_mec](https://user-images.githubusercontent.com/55678844/150070973-79d5fd02-4f2b-4b88-bf07-3dddd360deac.jpg)
 
 This is the diagram of the Attention model shown in Bahdanau’s paper. The Bidirectional LSTM used here generates a sequence of annotations (h1, h2,….., hTx) for each input sentence. All the vectors h1,h2.., etc., used in their work are basically the concatenation of forward and backward hidden states in the encoder.
 
